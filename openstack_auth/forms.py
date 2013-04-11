@@ -19,8 +19,10 @@ class Login(AuthenticationForm):
     """
     region = forms.ChoiceField(label=_("Region"), required=False)
     username = forms.CharField(label=_("User Name"))
+    password_widget = forms.PasswordInput(render_value=False,
+                                          attrs={'autocomplete': 'off'})
     password = forms.CharField(label=_("Password"),
-                               widget=forms.PasswordInput(render_value=False))
+                               widget=password_widget))
     tenant = forms.CharField(required=False, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
